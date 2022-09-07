@@ -13,8 +13,8 @@
 </parent>
     <groupId>code.wjf</groupId>
     <artifactId>Online-Edu</artifactId>
-<packaging>pom</packaging>
-<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
     <name>Online-Edu</name>
     <description>Online-Edu</description>
 
