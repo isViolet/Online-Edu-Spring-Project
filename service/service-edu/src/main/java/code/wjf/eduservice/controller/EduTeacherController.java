@@ -45,8 +45,7 @@ public class EduTeacherController {
     @DeleteMapping("removeById")
     @ApiOperation("根据id删除讲师")
     public R removeById(@ApiParam(name = "id", value = "讲师Id", required = true) @RequestParam String id){
-        teacherService.removeById(id);
-        return R.ok();
+        return R.operationStatus(teacherService.removeById(id));
     }
 
     @ApiOperation(value = "分页讲师列表")
@@ -73,6 +72,41 @@ public class EduTeacherController {
         long total = pageParam.getTotal();
 
         return  R.ok().data("total", total).data("rows", records);
+    }
+
+    @ApiOperation(value = "新增讲师")
+    @PostMapping("save")
+    public R save(
+            @ApiParam(name = "teacher", value = "讲师对象", required = true)
+            @RequestBody EduTeacher teacher){
+
+        return R.operationStatus(teacherService.save(teacher));
+
+    }
+
+    @ApiOperation(value = "根据ID查询讲师")
+    @GetMapping("getById")
+    public R getById(
+            @ApiParam(name = "id", value = "讲师ID", required = true)
+            @RequestParam String id){
+
+        EduTeacher teacher = teacherService.getById(id);
+        return R.getObjectStatus(teacher);
+
+    }
+
+    @ApiOperation(value = "根据ID修改讲师")
+    @PutMapping("updateById")
+    public R updateById(
+            @ApiParam(name = "id", value = "讲师ID", required = true)
+            @RequestParam String id,
+
+            @ApiParam(name = "teacher", value = "讲师对象", required = true)
+            @RequestBody EduTeacher teacher){
+
+        teacher.setId(id);
+        return R.operationStatus(teacherService.updateById(teacher));
+
     }
 
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+
 @Data
 public class R {
     @ApiModelProperty(value = "是否成功")
@@ -60,5 +61,21 @@ public class R {
     public R data(Map<String, Object> map){
         this.setData(map);
         return this;
+    }
+
+    public static R operationStatus(boolean flag){
+        if (flag){
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
+
+    public static R getObjectStatus(Object o){
+        if (o != null){
+            return R.ok().data("item", o);
+        }else {
+            return R.error();
+        }
     }
 }
