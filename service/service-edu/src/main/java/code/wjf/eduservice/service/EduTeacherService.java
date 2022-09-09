@@ -5,6 +5,8 @@ import code.wjf.eduservice.entity.vo.TeacherQuery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * 讲师 服务类
@@ -15,5 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduTeacherService extends IService<EduTeacher> {
     void pageQuery(Page<EduTeacher> pageParam, TeacherQuery teacherQuery);
+
+    public boolean removeById(Serializable id);
 }
 
