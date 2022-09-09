@@ -26,6 +26,8 @@ public enum ResultCodeEnum {
     LOGIN_ACL(215, "没有权限"),
     ByZero(460,"除数为0"),
 
+    FILE_UPLOAD_ERROR(461, "文件上传错误"),
+
 
     ;
 

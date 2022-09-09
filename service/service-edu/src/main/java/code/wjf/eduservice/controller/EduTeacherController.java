@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/eduservice/edu-teacher")
+@RequestMapping("/edu-service/edu-teacher")
 @Api("讲师管理")
 @CrossOrigin //跨域
 @EnableSwagger2 //解决 Unable to infer base url. This is common when using d...
