@@ -20,6 +20,9 @@ http {
     keepalive_timeout 65;
 
     #gzip on;
+    
+    #解决Access-Control-Allow-Origin' header is present on the requested resource
+    add_header 'Access-Control-Allow-Origin' '*';
 
     server {
         listen 81;
