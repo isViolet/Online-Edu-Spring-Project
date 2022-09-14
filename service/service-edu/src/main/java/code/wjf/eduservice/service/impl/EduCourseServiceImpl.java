@@ -50,4 +50,42 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         return course.getId();
     }
+
+    @Override
+    public CourseInfoForm getCourseInfoFormById(String id) {
+
+        EduCourse course = this.getById(id);
+        if(course == null){
+            throw new CustomizeException(ResultCodeEnum.NoData);
+        }
+        CourseInfoForm courseInfoForm = new CourseInfoForm();
+        BeanUtils.copyProperties(course, courseInfoForm);
+
+        EduCourseDescription courseDescription = courseDescriptionService.getById(id);
+        if(course != null){
+            courseInfoForm.setDescription(courseDescription.getDescription());
+        }
+
+        return courseInfoForm;
+    }
+
+    @Override
+    public void updateCourseInfoById(CourseInfoForm courseInfoForm) {
+        //保存课程基本信息
+        EduCourse course = new EduCourse();
+        BeanUtils.copyProperties(courseInfoForm, course);
+        boolean resultCourseInfo = this.updateById(course);
+        if(!resultCourseInfo){
+            throw new CustomizeException(ResultCodeEnum.UPDATE_COURSE_INFO_ERROR);
+        }
+
+        //保存课程详情信息
+        EduCourseDescription courseDescription = new EduCourseDescription();
+        courseDescription.setDescription(courseInfoForm.getDescription());
+        courseDescription.setId(course.getId());
+        boolean resultDescription = courseDescriptionService.updateById(courseDescription);
+        if(!resultDescription){
+            throw new CustomizeException(ResultCodeEnum.UPDATE_COURSE_DETAIL_INFO_ERROR);
+        }
+    }
 }

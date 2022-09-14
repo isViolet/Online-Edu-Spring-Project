@@ -40,5 +40,28 @@ public class EduCourseController {
             return R.error().message("保存失败");
         }
     }
+
+    @ApiOperation(value = "根据ID查询课程")
+    @GetMapping("getById")
+    public R getById(
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @RequestParam String id){
+
+        CourseInfoForm courseInfoForm = courseService.getCourseInfoFormById(id);
+        return R.ok().data("item", courseInfoForm);
+    }
+
+    @ApiOperation(value = "更新课程")
+    @PutMapping("updateCourseInfoById")
+    public R updateCourseInfoById(
+            @ApiParam(name = "CourseInfoForm", value = "课程基本信息", required = true)
+            @RequestBody CourseInfoForm courseInfoForm,
+
+            @ApiParam(name = "id", value = "课程ID", required = true)
+            @RequestParam String id){
+
+        courseService.updateCourseInfoById(courseInfoForm);
+        return R.ok();
+    }
 }
 

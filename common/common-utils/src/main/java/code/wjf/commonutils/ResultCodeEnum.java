@@ -24,6 +24,9 @@ public enum ResultCodeEnum {
     REGISTER_MOBLE_ERROR(213, "手机号已被使用"),
     LOGIN_AURH(214, "需要登录"),
     LOGIN_ACL(215, "没有权限"),
+
+    NoData(440, "数据不存在"),
+
     ByZero(460,"除数为0"),
 
     FILE_UPLOAD_ERROR(461, "文件上传错误"),
@@ -31,9 +34,13 @@ public enum ResultCodeEnum {
     ADD_ERROR(463,"添加失败"),
     ADD_COURSE_INFO_ERROR(464,"课程信息保存失败"),
 
-    ADD_COURSE_DETAIL_INFO_ERROR(46,"课程详情信息保存失败"),
-    ;
+    ADD_COURSE_DETAIL_INFO_ERROR(465,"课程详情信息保存失败"),
 
+    UPDATE_COURSE_INFO_ERROR(466,"课程信息更新失败"),
+
+    UPDATE_COURSE_DETAIL_INFO_ERROR(467,"课程详情信息更新失败"),
+
+    ;
     private Integer code;
     private String message;
 
