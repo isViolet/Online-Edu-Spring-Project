@@ -26,10 +26,10 @@ public class FileController {
     @ApiOperation(value = "文件上传")
     @PostMapping("upload")
     public R upload(
-            @ApiParam(name = "file", value = "文件", required = true)
-            @RequestParam("file") MultipartFile file) {
+            @ApiParam(name = "file", value = "文件", required = true) @RequestParam("file") MultipartFile file,
+            @ApiParam(name = "host", value = "存放路径", required = false) @RequestParam("host") String host) {
 
-        String uploadUrl = fileService.upload(file);
+        String uploadUrl = fileService.upload(file, host);
         //返回r对象
         return R.ok().message("文件上传成功").data("url", uploadUrl);
 

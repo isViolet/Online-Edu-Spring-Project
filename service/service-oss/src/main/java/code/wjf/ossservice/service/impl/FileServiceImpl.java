@@ -8,6 +8,7 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.CannedAccessControlList;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,14 +19,17 @@ import java.util.UUID;
 public class FileServiceImpl implements FileService {
 
     @Override
-    public String upload(MultipartFile file) {
+    public String upload(MultipartFile file, String host) {
 
         //获取阿里云存储相关常量
         String endPoint = ConstantPropertiesUtil.END_POINT;
         String accessKeyId = ConstantPropertiesUtil.ACCESS_KEY_ID;
         String accessKeySecret = ConstantPropertiesUtil.ACCESS_KEY_SECRET;
         String bucketName = ConstantPropertiesUtil.BUCKET_NAME;
-//        String fileHost = ConstantPropertiesUtil.FILE_HOST;
+        String fileHost = ConstantPropertiesUtil.FILE_HOST;
+        if (!StringUtils.isEmpty(host)){
+            fileHost = host;
+        }
 
         String uploadUrl = null;
 
@@ -50,7 +54,7 @@ public class FileServiceImpl implements FileService {
             String fileName = UUID.randomUUID().toString();
             String fileType = original.substring(original.lastIndexOf("."));
             String newName = fileName + fileType;
-            String fileUrl = filePath + "/" + newName;
+            String fileUrl = fileHost + "/" + filePath + "/" + newName;
 
             //文件上传至阿里云
             ossClient.putObject(bucketName, fileUrl, inputStream);
