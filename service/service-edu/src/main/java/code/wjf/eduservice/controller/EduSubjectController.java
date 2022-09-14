@@ -2,8 +2,10 @@ package code.wjf.eduservice.controller;
 
 
 import code.wjf.commonutils.R;
+import code.wjf.eduservice.entity.EduSubject;
 import code.wjf.eduservice.entity.vo.SubjectNestedVo;
 import code.wjf.eduservice.service.EduSubjectService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ import java.util.List;
 public class EduSubjectController {
     @Autowired
     private EduSubjectService subjectService;
+
+    @ApiOperation("获取所有一级课程分类")
+    @GetMapping("listAllOneSubject")
+    public R listAllOneSubject(){
+        return R.ok().data("items", subjectService.list(new QueryWrapper<EduSubject>().eq("parent_id", 0)));
+    }
 
     //添加课程分类
     @ApiOperation(value = "Excel批量导入")

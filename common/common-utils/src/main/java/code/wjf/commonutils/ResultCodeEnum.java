@@ -29,9 +29,9 @@ public enum ResultCodeEnum {
     FILE_UPLOAD_ERROR(461, "文件上传错误"),
     ADD_SUBJECT_ERROR(462, "添加课程分类失败"),
     ADD_ERROR(463,"添加失败"),
+    ADD_COURSE_INFO_ERROR(464,"课程信息保存失败"),
 
-
-
+    ADD_COURSE_DETAIL_INFO_ERROR(46,"课程详情信息保存失败"),
     ;
 
     private Integer code;
