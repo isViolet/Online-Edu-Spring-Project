@@ -15,26 +15,32 @@ import java.util.Date;
 
 /**
  * <p>
- * 课程简介
+ * 课程
  * </p>
  *
  * @author Natsume
- * @since 2022-09-14
+ * @since 2022-10-18
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduCourseDescription对象", description="课程简介")
-public class EduCourseDescription implements Serializable {
+@ApiModel(value="EduChapter对象", description="课程")
+public class EduChapter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "课程ID")
-    @TableId(value = "id", type = IdType.INPUT)
+    @ApiModelProperty(value = "章节ID")
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
-    @ApiModelProperty(value = "课程简介")
-    private String description;
+    @ApiModelProperty(value = "课程ID")
+    private String courseId;
+
+    @ApiModelProperty(value = "章节名称")
+    private String title;
+
+    @ApiModelProperty(value = "显示排序")
+    private Integer sort;
 
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间", example = "2019-01-01 8:00:00")
